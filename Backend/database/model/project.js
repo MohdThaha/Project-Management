@@ -1,12 +1,24 @@
 const mongoose = require('mongoose');
 
+const bucketSchema = new Schema({
+  bucketName: { type: String },
+  bucketStatus: { type: String },
+}, { _id: false });
+
+const memberSchema = new Schema({
+  memberName: { type: String }
+}, { _id: false });
+
 const ProjectSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  description: { type: String, required: true },
-  tasks: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Task' }],
-  progress: { type: Number, default: 0 },
-  members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-  createdAt: { type: Date, default: Date.now }
+  projectName: { type: String, required: true },
+  bucket: [bucketSchema],
+  members: [memberSchema],
+  createdAt: { type: String, required: true },
+  createdBy: { type: String, required: true },
+  privacy: { type: String, required: true },
+  group: { type: String, required: true }
+
+
 });
 
 module.exports = mongoose.model('Project', ProjectSchema);

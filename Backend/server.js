@@ -6,7 +6,7 @@ const cors = require('cors');
 const server = express();
 
 // Import routers
-const projectRouter = require('./router/projectRouter');
+const router = require('./router/router');
 
 
 require('./database/connection/connection');
@@ -16,7 +16,7 @@ server.use(cors());
 server.use(express.json());
 
 // Routes setup
-server.use(projectRouter);
+server.use(router);
 
 
 const PORT = process.env.PORT;
